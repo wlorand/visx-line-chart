@@ -1,4 +1,22 @@
+.app {
+  width: 100%;
+}
+
 .app-title,
 .app-subhead {
   text-align: center;
+}
+
+/* TODO: Add CSS Grid for placement */
+.chart-svg {
+  /* border: 1px solid red; */
+  margin: 0 200px;
+}
+
+.chart-bground {
+  fill: #f3f3f3;
+}
+
+.grid-line {
+  stroke: '#F00'; /* stroke: "#e0e0e0" */
 }
