@@ -1,3 +1,3 @@
 # Visx Line Chart
 
-### making a line chart with visx inside a cra with ts (2020)
+### Proto line [threshold] chart with visx (2020)
