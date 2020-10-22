@@ -5,7 +5,6 @@ import { scaleTime, scaleLinear } from '@visx/scale';
 
 import { LinePath } from '@visx/shape';
 import { curveBasis } from '@visx/curve';
-import { Threshold } from '@visx/threshold';
 
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -60,7 +59,7 @@ function TempLines({ width, height }: LineProps) {
   timeScale.range([0, xMax]);
   tempScale.range([yMax, 0]); // recall flip order on y, max to 0 to correct for svg coord space
 
-  // return / render an SVG for your chart and graphical layers inside
+  // return & render an SVG for your chart and graphical layers inside
   return (
     <div>
       <svg width={width} height={height} className="chart-svg">
@@ -96,27 +95,15 @@ function TempLines({ width, height }: LineProps) {
           {/* e- svg text for custom axis label placement */}
           <text x="-80" y="15" transform="rotate(-90)" fontSize={10}>
             Temperature (°F)
-            {/* f0- try Threshold */}
-            {/* f- sf temperature line as LinePath (skipping ny or the threshold) */}
-            {/* <LinePath
+          </text>
+          <LinePath
             data={cityTemperature}
             curve={curveBasis}
-            x={d => timeScale(date(d))}
-            y={d => temperatureScale(sf(d))}
-            stroke="#222"
+            x={(d) => timeScale(date(d)) ?? 0}
+            y={(d) => tempScale(ny(d)) ?? 0}
+            stroke="#009944"
             strokeWidth={1.5}
-            strokeOpacity={0.8}
-            strokeDasharray="1,2"
-          /> */}
-            <LinePath
-              data={cityTemperature}
-              curve={curveBasis}
-              x={(d) => timeScale(date(d)) ?? 0}
-              y={(d) => tempScale(ny(d)) ?? 0}
-              stroke="#222"
-              strokeWidth={1.5}
-            />
-          </text>
+          />
         </Group>
       </svg>
     </div>

@@ -5,7 +5,6 @@ import { scaleTime, scaleLinear } from '@visx/scale';
 
 import { LinePath } from '@visx/shape';
 import { curveBasis } from '@visx/curve';
-import { Threshold } from '@visx/threshold';
 
 import { AxisLeft, AxisBottom } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
@@ -40,12 +39,13 @@ const temperatureScale = scaleLinear<number>({
 
 const margin = { top: 40, right: 30, bottom: 50, left: 40 };
 
+//
 export type HotLineProps = {
   width: number;
   height: number;
 };
 
-export default function HotLine({ width, height }: HotLineProps) {
+function HotLine({ width, height }: HotLineProps) {
   if (width < 10) return null;
 
   // bounds
@@ -103,3 +103,5 @@ export default function HotLine({ width, height }: HotLineProps) {
     </div>
   );
 }
+
+export default HotLine;
