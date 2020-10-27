@@ -10,12 +10,12 @@ import { AxisLeft, AxisBottom } from '@visx/axis';
 import { GridRows, GridColumns } from '@visx/grid';
 import { Group } from '@visx/group';
 
-// visx mock data
+// visx mock data (cityTemp is the data, CityTemp is the TS type)
 import cityTemperature, {
   CityTemperature,
 } from '@visx/mock-data/lib/mocks/cityTemperature';
 
-// 1- define margin - with d3 margin convention
+// 1- define d3 margin convention
 const margin = { top: 40, right: 30, bottom: 50, left: 40 };
 
 // 4- Define type/interface for LineProps
@@ -25,12 +25,9 @@ export type LineProps = {
 };
 
 function TempLines({ width, height }: LineProps) {
-  if (width < 100) return null; // no render under 100px wide
-
-  // 2- accessor functions up top -- recall these .map()
+  // 1- accessor functions up top -- recall these .map()
   // change date string in mock data to a JS date obj and parse it
   const date = (d: CityTemperature) => new Date(d.date).valueOf();
-  // get ny, sf temps and cast them to Num
   const ny = (d: CityTemperature) => Number(d['New York']);
   const sf = (d: CityTemperature) => Number(d['San Francisco']);
 
@@ -48,7 +45,7 @@ function TempLines({ width, height }: LineProps) {
       // isolate sf: Math.min(...cityTemperature.map((d) => sf(d))),
       Math.max(...cityTemperature.map((d) => Math.max(ny(d), sf(d)))),
     ],
-    nice: true,
+    nice: true, // ?
   });
 
   // 5- Define Bounds of the Chart (sans margin)
